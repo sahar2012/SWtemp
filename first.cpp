@@ -32,7 +32,7 @@ class Gps
         /** Accessor function to get Position Coordinates from a file **/
         void readPositionCoordinates(char filename[20]);
 
-        /** Modifier Functions **/
+        /** Arithematic Functions **/
 
         /** Function to calculate distance between 2 points using euclidean's formula (temporarily) **/
         float calculateDistance();
