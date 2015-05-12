@@ -5,6 +5,7 @@
 #include <string>
 #include <math.h>
 
+/** stucture containing float values of latitude and longitude of a point **/
 struct Position
 {
     float latitude;
@@ -14,15 +15,28 @@ struct Position
 class Gps
 {
     public:
+        /** Customised constructor **/
         Gps(char filename[20]);
+
+        /** Get Functions**/
+
+        /** Get distance between two points **/
         void GetDistance();
+        /** Get angle of line between two points **/
         void GetAngleOfLine();
 
     private:
+        /** Array of object of structure Position **/
         Position position[2];
 
+        /** Accessor function to get Position Coordinates from a file **/
         void readPositionCoordinates(char filename[20]);
+
+        /** Modifier Functions **/
+
+        /** Function to calculate distance between 2 points using euclidean's formula (temporarily) **/
         float calculateDistance();
+        /** Function to calculate angle of line between 2 points using atan2 (temporarily) **/
         float calculateAngleOfLine();
 };
 
@@ -45,7 +59,7 @@ void Gps::GetAngleOfLine()
 
 void Gps::readPositionCoordinates(char filename[20])
 {
-   std::ifstream file;
+    std::ifstream file;
     file.open(filename);
     std::string line;
     int points=0;
@@ -53,7 +67,7 @@ void Gps::readPositionCoordinates(char filename[20])
     {
         std::vector<float> lineData;
         std::stringstream  lineStream(line);
-        int value;
+        float value;
         while(lineStream >> value)
         {
             lineData.push_back(value);
@@ -78,7 +92,10 @@ float Gps::calculateAngleOfLine()
 
 int main()
 {
+    /** g is an object of class Gps **/
     Gps g("abc.txt");
+
+    /** calling GET functions of class Gps using its object **/
     g.GetDistance();
     g.GetAngleOfLine();
     return 0;
